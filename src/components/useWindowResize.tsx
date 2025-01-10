@@ -20,6 +20,6 @@ function useWindowResize() {
         return () => {
             window.removeEventListener('resize', handleResize)
         }
-    },[])
+    }, [])
     return windowSize
 }
