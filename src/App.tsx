@@ -23,30 +23,28 @@
 //   )
 // }
 
-// export default App
-
-// import { useState } from 'react'
-import { useCountStore } from './hooks/useCount'
-import { AuthProvider } from '../x2'
-
-
+import useSetQueryParams from "./store/hook"
 function App() {
 
-  const { count, decrement, increment } = useCountStore();
-  // const count = useCountStore((state) => state.count)
-  // const increment = useCountStore((state) => state.increment)
-  // const decrement = useCountStore((state) => state.decrement)
-
   return (
-    <Authprovider
-    <div>
-      {count.toString()}
-      <div>
-        <button onClick={(e) => console.log(e.nativeEvent.pageX,e.nativeEvent.pageY)}>incre</button>
-        <button onClick={decrement}>decre</button>
-      </div>
-    </div>
+    <MyComponent />
   )
 }
 
 export default App
+
+function MyComponent() {
+  const setQueryParams = useSetQueryParams();
+
+  const handleSearch = (event: any) => {
+    setQueryParams({ search: event.target.value });
+  };
+
+  return (
+    <input
+      type="text"
+      placeholder="Search..."
+      onChange={(e) => handleSearch(e)}
+    />
+  );
+}
